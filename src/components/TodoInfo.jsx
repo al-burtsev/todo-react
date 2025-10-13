@@ -1,10 +1,13 @@
-import React from 'react'
+const TodoInfo = ({ total, done }) => {
 
-const TodoInfo = () => {
+    const hasTasks = total > 0
+
     return (
         <div className="todo__info">
-            <div className="todo__total-tasks">Total tasks: <span>0</span></div>
-            <button className="todo__delete-all-button" type="button">Delete all</button>
+            <div className="todo__total-tasks">Done {done} from {total}</div>
+            {hasTasks && (
+                <button className="todo__delete-all-button" type="button">Delete all</button>
+            )}
         </div>
     )
 }

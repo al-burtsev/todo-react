@@ -1,17 +1,18 @@
-const Field = ({ label }) => {
+const Field = ({ className = '', id, label, type  }) => {
     return (
-        <div className="todo__field field">
+        <div className={`field ${className}`}>
             <label
                 className="field__label"
-                htmlFor="new-task"
+                htmlFor={id}
             >
                 {label}
             </label>
             <input
                 className="field__input"
-                id="new-task"
+                id={id}
                 placeholder=" "
                 autoComplete="off"
+                type={type}
             />
         </div>
     )
