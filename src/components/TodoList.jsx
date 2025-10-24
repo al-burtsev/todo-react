@@ -1,6 +1,6 @@
 import TodoItem from "./TodoItem";
 
-const TodoList = ({ tasks = [] }) => {
+const TodoList = ({ tasks = [], onDeleteTaskBtnClick, onTaskCompleteChange }) => {
   const hasTasks = true;
 
   if (!hasTasks) {
@@ -16,6 +16,8 @@ const TodoList = ({ tasks = [] }) => {
           className="todo__list"
           key={task.id}
           {...task}
+          onDeleteTaskBtnClick={onDeleteTaskBtnClick}
+          onTaskCompleteChange={onTaskCompleteChange}
         />
       )
       )}
