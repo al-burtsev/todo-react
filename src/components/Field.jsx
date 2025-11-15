@@ -1,4 +1,4 @@
-const Field = ({ className = '', id, label, type, onInput, value  }) => {
+const Field = ({ className = '', id, label, type, onInput, value, ref }) => {
     return (
         <div className={`field ${className}`}>
             <label
@@ -15,6 +15,7 @@ const Field = ({ className = '', id, label, type, onInput, value  }) => {
                 type={type}
                 value={value}
                 onInput={onInput}
+                ref={ref}
             />
         </div>
     )

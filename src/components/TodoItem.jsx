@@ -1,8 +1,8 @@
 import React from 'react'
 
-const TodoItem = ({ className = '', id, title, isDone, onDeleteTaskBtnClick, onTaskCompleteChange }) => {
+const TodoItem = ({ className = '', id, title, isDone, onDeleteTaskBtnClick, onTaskCompleteChange, ref }) => {
     return (
-        <li className={`todo-item ${className}`}>
+        <li ref={ref} className={`todo-item ${className}`}>
             <input
                 className="todo-item__checkbox"
                 id={id}
