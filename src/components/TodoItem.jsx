@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 
 const TodoItem = ({ className = '', id, title, isDone, onDeleteTaskBtnClick, onTaskCompleteChange, ref }) => {
     return (
@@ -42,4 +42,4 @@ const TodoItem = ({ className = '', id, title, isDone, onDeleteTaskBtnClick, onT
     )
 }
 
-export default TodoItem
+export default memo(TodoItem)
