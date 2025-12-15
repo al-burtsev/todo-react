@@ -1,4 +1,4 @@
-const Field = ({ className = '', id, label, type, onInput, value, ref }) => {
+const Field = ({ className = '', id, label, type, onInput, value, error, ref }) => {
     return (
         <div className={`field ${className}`}>
             <label
@@ -8,7 +8,7 @@ const Field = ({ className = '', id, label, type, onInput, value, ref }) => {
                 {label}
             </label>
             <input
-                className="field__input"
+                className={`field__input ${error ? 'is-invalid' : ''}`}
                 id={id}
                 placeholder=""
                 autoComplete="off"
@@ -17,6 +17,9 @@ const Field = ({ className = '', id, label, type, onInput, value, ref }) => {
                 onInput={onInput}
                 ref={ref}
             />
+            {error && (
+                <span className='field__error' title={error}>{error}</span>
+            )}
         </div>
     )
 }
