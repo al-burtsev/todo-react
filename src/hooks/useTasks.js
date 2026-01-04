@@ -44,7 +44,7 @@ const useTasks = () => {
 
         tasksAPI.add(newTask)
             .then((addedTask) => {
-                setTasks((prevTasks) => [...prevTasks, addedTask])
+                setTasks((prevTasks) => [addedTask,...prevTasks])
                 setNewTaskTitle('')
                 setSearchQuery('')
                 newTaskInputRef.current.focus()
