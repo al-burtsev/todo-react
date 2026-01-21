@@ -7,10 +7,18 @@ const TodoItem = ({ className = '', id, title, isDone }) => {
     const { firstUncompletedTaskRef,
         firstUncompletedTaskId,
         deleteTask,
-        toggleTaskComplete } = useContext(TasksContext)
+        toggleTaskComplete,
+        disappearingTaskId,
+        appearingTaskId, } = useContext(TasksContext)
 
     return (
-        <li ref={id === firstUncompletedTaskId ? firstUncompletedTaskRef : null} className={`${styles.todoItem} ${className}`}>
+        <li ref={id === firstUncompletedTaskId ? firstUncompletedTaskRef : null}
+            className={`
+            ${styles.todoItem}
+             ${className} 
+             ${disappearingTaskId === id ? styles.isDisappearing : ""}
+              ${appearingTaskId === id ? styles.isAppearing : ""}
+             `}>
             <input
                 className={styles.checkbox}
                 id={id}
