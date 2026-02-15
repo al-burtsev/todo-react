@@ -2,6 +2,7 @@ import { memo, useContext } from 'react'
 import { TasksContext } from '@/entities/todo/'
 import RouterLink from '@/shared/ui/RouterLink'
 import styles from './TodoItem.module.scss'
+import { highlightCaseInsensitive } from '@/shared/utils/highlight'
 
 const TodoItem = ({ className = '', id, title, isDone }) => {
     const { firstUncompletedTaskRef,
@@ -9,7 +10,9 @@ const TodoItem = ({ className = '', id, title, isDone }) => {
         deleteTask,
         toggleTaskComplete,
         disappearingTaskId,
-        appearingTaskId, } = useContext(TasksContext)
+        appearingTaskId, searchQuery } = useContext(TasksContext)
+    
+    const highlighedTitle = highlightCaseInsensitive(title, searchQuery)
 
     return (
         <li ref={id === firstUncompletedTaskId ? firstUncompletedTaskRef : null}
@@ -33,7 +36,7 @@ const TodoItem = ({ className = '', id, title, isDone }) => {
                 {title}
             </label>
             <RouterLink to={`/tasks/${id}`} aria-label="Task detail page">
-                {title}
+               <span dangerouslySetInnerHTML={{__html: highlighedTitle}}></span>
             </RouterLink>
             <button
                 className={styles.deleteButton}
