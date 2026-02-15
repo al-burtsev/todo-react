@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { TasksContext } from './TasksContext.js'
 import useTasks from './useTasks.js'
 import useUncompleteTaskScroll from './useUncompleteTaskScroll.js'
@@ -11,7 +12,6 @@ export const TasksProvider = (props) => {
         deleteTask,
         deleteAllTasks,
         toggleTaskComplete,
-
         newTaskTitle,
         setNewTaskTitle,
         searchQuery,
@@ -27,27 +27,42 @@ export const TasksProvider = (props) => {
         firstUncompletedTaskId,
     } = useUncompleteTaskScroll(tasks)
 
-    return (
-        <TasksContext.Provider
-            value={{
-                tasks,
-                filteredTasks,
-                firstUncompletedTaskRef,
-                firstUncompletedTaskId,
-                deleteTask,
-                deleteAllTasks,
-                toggleTaskComplete,
+    const value = useMemo(() => ({
+        tasks,
+        filteredTasks,
+        deleteTask,
+        deleteAllTasks,
+        toggleTaskComplete,
+        newTaskTitle,
+        setNewTaskTitle,
+        searchQuery,
+        setSearchQuery,
+        newTaskInputRef,
+        addTask,
+        disappearingTaskId,
+        appearingTaskId,
+        firstUncompletedTaskRef,
+        firstUncompletedTaskId,
+    }), [
+        tasks,
+        filteredTasks,
+        deleteTask,
+        deleteAllTasks,
+        toggleTaskComplete,
+        newTaskTitle,
+        setNewTaskTitle,
+        searchQuery,
+        setSearchQuery,
+        newTaskInputRef,
+        addTask,
+        disappearingTaskId,
+        appearingTaskId,
+        firstUncompletedTaskRef,
+        firstUncompletedTaskId,
+    ])
 
-                newTaskTitle,
-                setNewTaskTitle,
-                searchQuery,
-                setSearchQuery,
-                newTaskInputRef,
-                addTask,
-                disappearingTaskId,
-                appearingTaskId
-            }}
-        >
+    return (
+        <TasksContext.Provider value={value}>
             {children}
         </TasksContext.Provider>
     )
